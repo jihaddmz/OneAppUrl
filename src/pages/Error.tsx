@@ -1,9 +1,8 @@
-import React from 'react';
 
 const Error = () => {
     return (
-        <div>
-            
+        <div className="flex flex-col items-center justify-center">
+            <h1 className="font-bold text-2xl">Something went wrong! Please try again later.</h1>
         </div>
     );
 };
