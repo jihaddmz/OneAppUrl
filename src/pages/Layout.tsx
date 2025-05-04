@@ -6,9 +6,9 @@ const Layout = () => {
         <>
             <Outlet/>
 
-            <div className="mt-10">
+            <footer className="mt-20 mb-10">
                 <Footer/>
-            </div>
+            </footer>
         </>
     );
 };
