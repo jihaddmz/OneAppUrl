@@ -64,7 +64,7 @@ const Dashboard = () => {
 
             <div className="flex flex-col px-5">
                 <h1 className={"font-bold text-2xl mt-5"}>Dashboard</h1>
-                <p className={"text-gray-400"}>Welcome back! Manage your app URLs here.</p>
+                <p className={"text-gray-400"}>Welcome back {localStorage.getItem("username")}! Manage your app URLs here.</p>
 
                 {/*Form to create a new url */}
                 <div className="flex flex-col p-5 mt-10 border rounded-lg border-gray-200 md:mx-20">

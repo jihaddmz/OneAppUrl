@@ -41,7 +41,7 @@ const ItemUrl = ({id, url, appName, iosUrl, androidUrl, visits, createdDate}: Pr
             </div>
 
             <div className="flex justify-between items-center mt-5">
-                <div className="bg-primary/30 px-2 py-1 rounded-lg">
+                <div className="bg-primary/10 px-2 py-1 rounded-lg">
                     <p className="text-primary">{visits} visits</p>
                 </div>
 

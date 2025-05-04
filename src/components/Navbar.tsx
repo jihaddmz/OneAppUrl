@@ -5,6 +5,7 @@ import {useNavigate} from "react-router-dom";
 const Navbar = () => {
     const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
     const navigate = useNavigate();
+    const isSignedIn = localStorage.getItem("token") != null;
 
     return (
         <div className={"w-screen bg-white flex-col p-3"}>
@@ -27,13 +28,26 @@ const Navbar = () => {
                     }}/>}
                 </div>
 
+                {/* Navbar for larger screens */}
                 <div className="hidden sm:flex items-center gap-5">
                     <p className="cursor-pointer hover:text-gray-400" onClick={() => {
-                        navigate("auth");
-                    }}>Sign In</p>
-                    <button className="bg-primary hover:bg-primary/70 text-white rounded-lg px-3 py-1 cursor-pointer" onClick={() => {
-                        navigate("auth");
-                    }}>Sign Up</button>
+                        if (isSignedIn) {
+                            navigate("/dashboard");
+                        } else {
+                            navigate("auth");
+                        }
+                    }}>{isSignedIn ? "Dashboard" : "Sign In"}</p>
+                    <button className="bg-primary hover:bg-primary/70 text-white rounded-lg px-3 py-1 cursor-pointer"
+                            onClick={() => {
+                                if (isSignedIn) {
+                                    localStorage.removeItem("token");
+                                    localStorage.removeItem("username");
+                                    navigate("/");
+                                } else {
+                                    navigate("auth");
+                                }
+                            }}>{isSignedIn ? "Sign Out" : "Sign Up"}
+                    </button>
                 </div>
             </div>
 
@@ -42,9 +56,22 @@ const Navbar = () => {
             {isMobileMenuOpen && (
                 <div className={"flex flex-col gap-3 mt-5"}>
                     <p onClick={() => {
-                        navigate("auth")
-                    }}>Sign In</p>
-                    <p>Sign Up</p>
+                        if (isSignedIn) {
+                            navigate("/dashboard");
+                        } else {
+                            navigate("auth")
+                        }
+                    }}>{isSignedIn ? "Dashboard" : "Sign In"}</p>
+
+                    <p onClick={() => {
+                        if (isSignedIn) {
+                            localStorage.removeItem("token");
+                            localStorage.removeItem("username");
+                            window.location.reload();
+                        } else {
+                            navigate("auth");
+                        }
+                    }}>{isSignedIn ? "Sign Out" : "Sign Up"}</p>
                 </div>
             )}
         </div>
