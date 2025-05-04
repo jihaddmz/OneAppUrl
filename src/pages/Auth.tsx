@@ -3,7 +3,6 @@ import Navbar from "../components/Navbar.tsx";
 import {AppDispatch, RootState} from "../state/store.ts";
 import {useDispatch, useSelector} from "react-redux";
 import signUpAction from "../state/actions/SignUpAction.ts";
-import {useNavigate} from "react-router-dom";
 import signInAction from "../state/actions/SignInAction.ts";
 
 const Auth = () => {
@@ -12,7 +11,6 @@ const Auth = () => {
     const [password, setPassword] = useState("");
     const [fullName, setFullName] = useState("");
 
-    const navigate = useNavigate();
     const dispatch = useDispatch<AppDispatch>();
     const {loading, error, signUpSuccess, token} = useSelector((state: RootState) => state.auth);
 
@@ -32,7 +30,7 @@ const Auth = () => {
         if (token) {
             localStorage.setItem("token", token);
             localStorage.setItem("username", username);
-            navigate("/dashboard");
+            window.location.href = "/dashboard";
         }
 
     }, [token]);

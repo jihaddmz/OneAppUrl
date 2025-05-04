@@ -5,9 +5,9 @@ import {AppDispatch, RootState} from "../state/store.ts";
 import saveUrlAction from "../state/actions/SaveUrlAction.ts";
 import ItemUrl from "../components/ItemUrl.tsx";
 import GetAllUrlsAction from "../state/actions/GetAllUrlsAction.ts";
+import getAllUrlsAction from "../state/actions/GetAllUrlsAction.ts";
 import Loader from "../components/Loader.tsx";
 import searchUrlsAction from "../state/actions/SearchUrlsAction.ts";
-import getAllUrlsAction from "../state/actions/GetAllUrlsAction.ts";
 
 const Dashboard = () => {
     const dispatch = useDispatch<AppDispatch>();
@@ -19,7 +19,9 @@ const Dashboard = () => {
     const [searchUrl, setSearchUrl] = useState("");
 
     useEffect(() => {
-        dispatch(GetAllUrlsAction());
+        setTimeout(() => {
+            dispatch(GetAllUrlsAction());
+        }, 200)
     }, [dispatch]);
 
     useEffect(() => {
@@ -64,7 +66,8 @@ const Dashboard = () => {
 
             <div className="flex flex-col px-5">
                 <h1 className={"font-bold text-2xl mt-5"}>Dashboard</h1>
-                <p className={"text-gray-400"}>Welcome back {localStorage.getItem("username")}! Manage your app URLs here.</p>
+                <p className={"text-gray-400"}>Welcome back {localStorage.getItem("username")}! Manage your app URLs
+                    here.</p>
 
                 {/*Form to create a new url */}
                 <div className="flex flex-col p-5 mt-10 border rounded-lg border-gray-200 md:mx-20">

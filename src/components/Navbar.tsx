@@ -1,11 +1,12 @@
 import {useState} from 'react';
 import {Link, Menu, X} from "lucide-react";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 
 const Navbar = () => {
     const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
     const navigate = useNavigate();
     const isSignedIn = localStorage.getItem("token") != null;
+    const location = useLocation();
 
     return (
         <div className={"w-screen bg-white flex-col p-3"}>
@@ -19,36 +20,42 @@ const Navbar = () => {
                     <h1 className="font-bold text-lg">OneAppUrl</h1>
                 </div>
 
-                {/* Menu icon for mobile */}
-                <div className="flex sm:hidden cursor-pointer">
-                    {!isMobileMenuOpen ? <Menu onClick={() => {
-                        setMobileMenuOpen(true);
-                    }}/> : <X onClick={() => {
-                        setMobileMenuOpen(false);
-                    }}/>}
-                </div>
+                {location.pathname !== "/auth" && (
+                    // Menu icon for mobile
+                    <div className="flex sm:hidden cursor-pointer">
+                        {!isMobileMenuOpen ? <Menu onClick={() => {
+                            setMobileMenuOpen(true);
+                        }}/> : <X onClick={() => {
+                            setMobileMenuOpen(false);
+                        }}/>}
+                    </div>
+                )}
 
-                {/* Navbar for larger screens */}
-                <div className="hidden sm:flex items-center gap-5">
-                    <p className="cursor-pointer hover:text-gray-400" onClick={() => {
-                        if (isSignedIn) {
-                            navigate("/dashboard");
-                        } else {
-                            navigate("auth");
-                        }
-                    }}>{isSignedIn ? "Dashboard" : "Sign In"}</p>
-                    <button className="bg-primary hover:bg-primary/70 text-white rounded-lg px-3 py-1 cursor-pointer"
+
+                {location.pathname !== "/auth" && (
+                    // Navbar for larger screens
+                    <div className="hidden sm:flex items-center gap-5">
+                        <p className="cursor-pointer hover:text-gray-400" onClick={() => {
+                            if (isSignedIn) {
+                                navigate("/dashboard");
+                            } else {
+                                navigate("auth");
+                            }
+                        }}>{isSignedIn ? "Dashboard" : "Sign In"}</p>
+                        <button
+                            className="bg-primary hover:bg-primary/70 text-white rounded-lg px-3 py-1 cursor-pointer"
                             onClick={() => {
                                 if (isSignedIn) {
                                     localStorage.removeItem("token");
                                     localStorage.removeItem("username");
-                                    navigate("/");
+                                    window.location.href = "/";
                                 } else {
                                     navigate("auth");
                                 }
                             }}>{isSignedIn ? "Sign Out" : "Sign Up"}
-                    </button>
-                </div>
+                        </button>
+                    </div>
+                )}
             </div>
 
 
@@ -67,7 +74,7 @@ const Navbar = () => {
                         if (isSignedIn) {
                             localStorage.removeItem("token");
                             localStorage.removeItem("username");
-                            window.location.reload();
+                            window.location.href = "/";
                         } else {
                             navigate("auth");
                         }
