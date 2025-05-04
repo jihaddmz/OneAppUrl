@@ -117,7 +117,7 @@ const Dashboard = () => {
                         {urls.length > 0 && (
                             urls.map((url) => (
                                 <div key={url._id}>
-                                    <ItemUrl id={url._id} url={`http://localhost:8080/u/${url.slug}`}
+                                    <ItemUrl id={url._id} url={`https://oneappurl.onrender.com/u/${url.slug}`}
                                              appName={url.appName}
                                              androidUrl={url.androidUrl}
                                              iosUrl={url.iosUrl} createdDate={url.dateCreated} visits={url.visits}/>

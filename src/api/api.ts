@@ -4,7 +4,7 @@ import {UrlType} from "../types/UrlType.ts";
 const token = localStorage.getItem('token');
 
 const options = {
-    baseUrl: 'http://192.168.0.135:8080',
+    baseUrl: 'https://oneappurl.onrender.com',
     headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
