@@ -13,7 +13,7 @@ const SignInAction = createAsyncThunk(
             const result = await signIn(username, password);
             return result;
         } catch (e) {
-            const errorMsg = e instanceof Error ? e.message : "Failed to sign up";
+            const errorMsg = e instanceof Error ? e.message : "Failed to sign in";
             return rejectWithValue(errorMsg)
         }
     }
