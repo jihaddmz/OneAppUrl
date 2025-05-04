@@ -3,11 +3,17 @@ import {ArrowRight, CircleCheckBig, Link, Smartphone} from "lucide-react";
 import ItemWhyChoose from "../components/ItemWhyChoose.tsx";
 import ItemHowItWorksMobile from "../components/ItemHowItWorksMobile.tsx";
 import {useNavigate} from "react-router-dom";
-import {useRef} from "react";
+import {useEffect, useRef} from "react";
 
 const Home = () => {
     const navigate = useNavigate();
     const howItWorkksRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (localStorage.getItem("token")) { // if there is a token, then user has signed in before, navigate directly to dashboard
+            navigate("/dashboard")
+        }
+    }, []);
 
     return (
         <div>

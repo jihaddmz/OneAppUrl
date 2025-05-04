@@ -19,7 +19,7 @@ const Navbar = () => {
                 </div>
 
                 {/* Menu icon for mobile */}
-                <div className="flex sm:hidden">
+                <div className="flex sm:hidden cursor-pointer">
                     {!isMobileMenuOpen ? <Menu onClick={() => {
                         setMobileMenuOpen(true);
                     }}/> : <X onClick={() => {
