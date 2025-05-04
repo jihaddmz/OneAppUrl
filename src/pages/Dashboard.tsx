@@ -6,6 +6,8 @@ import saveUrlAction from "../state/actions/SaveUrlAction.ts";
 import ItemUrl from "../components/ItemUrl.tsx";
 import GetAllUrlsAction from "../state/actions/GetAllUrlsAction.ts";
 import Loader from "../components/Loader.tsx";
+import searchUrlsAction from "../state/actions/SearchUrlsAction.ts";
+import getAllUrlsAction from "../state/actions/GetAllUrlsAction.ts";
 
 const Dashboard = () => {
     const dispatch = useDispatch<AppDispatch>();
@@ -25,6 +27,20 @@ const Dashboard = () => {
             alert(error);
     }, [error]);
 
+    let prevSearch = "";
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            if (searchUrl) {
+                dispatch(searchUrlsAction({query: searchUrl}))
+            } else if (prevSearch) {
+                dispatch(getAllUrlsAction())
+            }
+            prevSearch = searchUrl;
+        }, 700)
+
+        return () => clearTimeout(timeoutId);
+    }, [searchUrl]);
+
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         dispatch(saveUrlAction({appName, iosUrl, androidUrl}))
@@ -42,8 +58,8 @@ const Dashboard = () => {
             <Navbar/>
 
             {/* if the loading is true and the user hasn't entered any appName, so this loading is due to initially fetching urls*/}
-            {loading && appName.length == 0 && (
-                <Loader />
+            {loading && (
+                <Loader/>
             )}
 
             <div className="flex flex-col px-5">
@@ -80,9 +96,7 @@ const Dashboard = () => {
 
                         <button type="submit"
                                 className="w-full bg-primary hover:bg-primary/70 cursor-pointer text-white rounded-lg py-2 flex justify-center items-center">
-                            {loading && appName ? (
-                                <div className="w-5 h-5 border-t border-white animate-spin rounded-full"></div>
-                            ) : "Create URL"}
+                            Create URL
                         </button>
                     </form>
                 </div>
@@ -100,7 +114,8 @@ const Dashboard = () => {
                         {urls.length > 0 && (
                             urls.map((url) => (
                                 <div key={url._id}>
-                                    <ItemUrl url={`http://localhost:8080/u/${url.slug}`} appName={url.appName}
+                                    <ItemUrl id={url._id} url={`http://localhost:8080/u/${url.slug}`}
+                                             appName={url.appName}
                                              androidUrl={url.androidUrl}
                                              iosUrl={url.iosUrl} createdDate={url.dateCreated} visits={url.visits}/>
                                 </div>

@@ -60,3 +60,27 @@ export const getAllUrls = async (): Promise<UrlType[]> => {
 
     return (await result.json());
 }
+
+export const searchUrls = async (query: string): Promise<UrlType[]> => {
+    const result = await fetch(`${options.baseUrl}/api/url/filter?query=${query}`, {
+        headers: options.headers,
+        method: "GET",
+    })
+
+    await checkForApiError(result)
+
+    const data = await result.json() as UrlType[];
+
+    return (data);
+}
+
+export const deleteUrl = async (id: string): Promise<UrlType> => {
+    const result = await fetch(`${options.baseUrl}/api/url/delete/${id}`, {
+        headers: options.headers,
+        method: "DELETE",
+    })
+
+    await checkForApiError(result)
+
+    return (await result.json());
+}

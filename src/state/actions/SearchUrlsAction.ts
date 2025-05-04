@@ -1,11 +1,11 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {getAllUrls} from "../../api/api.ts";
+import {searchUrls} from "../../api/api.ts";
 
-const GetAllUrlsAction = createAsyncThunk(
+const SearchUrlsAction = createAsyncThunk(
     'GetAllUrls',
-    async (_,{rejectWithValue}) => {
+    async ({query}: {query: string},{rejectWithValue}) => {
         try {
-            const result = await getAllUrls();
+            const result = await searchUrls(query);
             return result;
         } catch (e) {
             const errorMsg = e instanceof Error ? e.message : "Failed to fetch urls";
@@ -14,4 +14,4 @@ const GetAllUrlsAction = createAsyncThunk(
     }
 )
 
-export default GetAllUrlsAction
+export default SearchUrlsAction

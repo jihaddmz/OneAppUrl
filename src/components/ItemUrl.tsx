@@ -1,7 +1,11 @@
 import {Check, Copy, Trash2} from "lucide-react";
 import {useState} from "react";
+import {AppDispatch} from "../state/store.ts";
+import {useDispatch} from "react-redux";
+import DeleteUrlAction from "../state/actions/DeleteUrlAction.ts";
 
 interface Props {
+    id: string;
     url: string;
     appName: string;
     androidUrl: string;
@@ -10,15 +14,16 @@ interface Props {
     visits: number;
 }
 
-const ItemUrl = ({url, appName, iosUrl, androidUrl, visits, createdDate}: Props) => {
+const ItemUrl = ({id, url, appName, iosUrl, androidUrl, visits, createdDate}: Props) => {
     const [showCopy, setShowCopy] = useState(true);
+    const dispatch = useDispatch<AppDispatch>();
 
     return (
         <div className="border border-gray-300 rounded-lg p-3 flex flex-col">
             <div className="flex justify-between items-center">
                 <h2 className="font-bold text-xl">{appName}</h2>
                 <Trash2 className="text-gray-400 hover:text-red-600 cursor-pointer" onClick={() => {
-
+                    dispatch(DeleteUrlAction({id}))
                 }}/>
             </div>
             <p className="text-gray-400">{createdDate}</p>
