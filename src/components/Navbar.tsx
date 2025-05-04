@@ -29,10 +29,10 @@ const Navbar = () => {
 
                 <div className="hidden sm:flex items-center gap-5">
                     <p className="cursor-pointer hover:text-gray-400" onClick={() => {
-                        navigate("auth/signin");
+                        navigate("auth");
                     }}>Sign In</p>
                     <button className="bg-primary hover:bg-primary/70 text-white rounded-lg px-3 py-1 cursor-pointer" onClick={() => {
-                        navigate("auth/signup");
+                        navigate("auth");
                     }}>Sign Up</button>
                 </div>
             </div>
@@ -42,7 +42,7 @@ const Navbar = () => {
             {isMobileMenuOpen && (
                 <div className={"flex flex-col gap-3 mt-5"}>
                     <p onClick={() => {
-                        navigate("auth/signin")
+                        navigate("auth")
                     }}>Sign In</p>
                     <p>Sign Up</p>
                 </div>

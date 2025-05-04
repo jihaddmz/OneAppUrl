@@ -12,7 +12,7 @@ function App() {
             <Routes>
                 <Route path={"/"} element={<Layout/>}>
                     <Route index element={<Home/>}/>
-                    <Route path={"auth/:type"} element={<Auth/>}/>
+                    <Route path={"auth/"} element={<Auth/>}/>
                     <Route path={"dashboard"} element={<Dashboard/>}/>
                     <Route path={"*"} element={<Error/>}/>
                 </Route>
