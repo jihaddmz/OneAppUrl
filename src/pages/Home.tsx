@@ -28,12 +28,12 @@ const Home = () => {
                         to the right app store based on their device - iOS or Android.</p>
 
                     <div className="flex justify-evenly mt-8 gap-5">
-                        <button className="bg-white cursor-pointer text-primary px-5 py-3 rounded-lg flex" onClick={() => {
+                        <button className="bg-white cursor-pointer text-primary px-5 py-3 rounded-lg flex hover:bg-white/80" onClick={() => {
                             navigate("/auth/signin");
                         }}>Get Started
                             Free <ArrowRight
                                 className="ms-2"/></button>
-                        <button className="text-white cursor-pointer px-5 py-1 rounded-lg border border-white" onClick={() => {
+                        <button className="text-white cursor-pointer px-5 py-1 rounded-lg border border-white hover:bg-white/10" onClick={() => {
                             howItWorkksRef.current?.scrollIntoView({behavior: "smooth"});
                         }}>Learn
                             More
@@ -157,7 +157,7 @@ const Home = () => {
                 <div className="flex flex-col items-center mt-20 bg-blue-100 px-5 py-14">
                     <h1 className="font-bold text-xl text-center">Ready to simplify your app distribution?</h1>
                     <p className="mt-2 text-gray-600">Join thousands of app developers who are streamlining their marketing with OneAppUrl.</p>
-                    <button className="text-white bg-primary px-5 py-2 flex items-center justify-center rounded-lg mt-5" onClick={() => {
+                    <button className="text-white bg-primary  hover:bg-primary/70 px-5 py-2 flex items-center justify-center rounded-lg mt-5 cursor-pointer" onClick={() => {
                         navigate("/auth/signin");
                     }}>Get Started for Free <ArrowRight className="ms-2" /></button>
                 </div>

@@ -11,7 +11,9 @@ const Navbar = () => {
 
             {/* The top nav bar row */}
             <div className={"flex justify-between"}>
-                <div className={"flex items-center gap-2"}>
+                <div className={"flex items-center gap-2 cursor-pointer"} onClick={() => {
+                    navigate("/");
+                }}>
                     <Link className="text-primary"/>
                     <h1 className="font-bold text-lg">OneAppUrl</h1>
                 </div>
@@ -26,10 +28,10 @@ const Navbar = () => {
                 </div>
 
                 <div className="hidden sm:flex items-center gap-5">
-                    <p className="cursor-pointer" onClick={() => {
+                    <p className="cursor-pointer hover:text-gray-400" onClick={() => {
                         navigate("auth/signin");
                     }}>Sign In</p>
-                    <button className="bg-primary text-white rounded-lg px-3 py-1 cursor-pointer" onClick={() => {
+                    <button className="bg-primary hover:bg-primary/70 text-white rounded-lg px-3 py-1 cursor-pointer" onClick={() => {
                         navigate("auth/signup");
                     }}>Sign Up</button>
                 </div>
