@@ -4,7 +4,6 @@ import {AppDispatch, RootState} from "../state/store.ts";
 import {useDispatch, useSelector} from "react-redux";
 import signUpAction from "../state/actions/SignUpAction.ts";
 import signInAction from "../state/actions/SignInAction.ts";
-import {useNavigate} from "react-router-dom";
 
 const Auth = () => {
     const [isSignedIn, setIsSignedIn] = useState<boolean>(true);
@@ -13,7 +12,6 @@ const Auth = () => {
     const [fullName, setFullName] = useState("");
 
 
-    const navigate = useNavigate();
     const dispatch = useDispatch<AppDispatch>();
     const {loading, error, signUpSuccess, token} = useSelector((state: RootState) => state.auth);
 
@@ -33,8 +31,7 @@ const Auth = () => {
         if (token) {
             localStorage.setItem("token", token);
             localStorage.setItem("username", username);
-            window.location.reload();
-            navigate("/dashboard")
+            window.location.href = "/";
         }
 
     }, [token]);
