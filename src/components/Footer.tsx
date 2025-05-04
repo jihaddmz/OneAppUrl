@@ -2,7 +2,7 @@ import {Github, Linkedin} from "lucide-react";
 
 const Footer = () => {
     return (
-        <div className={`flex flex-col items-center py-10 px-5`}>
+        <div className={`flex flex-col items-center px-5`}>
             <div className={"flex items-center justify-center gap-5"}>
                 <a href={"https://github.com/jihaddmz/OneAppUrl"}>
                     <Github className="text-gray-400"/>

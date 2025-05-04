@@ -3,11 +3,17 @@ import {ArrowRight, CircleCheckBig, Link, Smartphone} from "lucide-react";
 import ItemWhyChoose from "../components/ItemWhyChoose.tsx";
 import ItemHowItWorksMobile from "../components/ItemHowItWorksMobile.tsx";
 import {useNavigate} from "react-router-dom";
-import {useRef} from "react";
+import {useEffect, useRef} from "react";
 
 const Home = () => {
     const navigate = useNavigate();
     const howItWorkksRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (localStorage.getItem("token")) { // if there is a token, then user has signed in before, navigate directly to dashboard
+            navigate("/dashboard")
+        }
+    }, []);
 
     return (
         <div>
@@ -29,7 +35,7 @@ const Home = () => {
 
                     <div className="flex justify-evenly mt-8 gap-5">
                         <button className="bg-white cursor-pointer text-primary px-5 py-3 rounded-lg flex hover:bg-white/80" onClick={() => {
-                            navigate("/auth/signin");
+                            navigate("/auth");
                         }}>Get Started
                             Free <ArrowRight
                                 className="ms-2"/></button>
@@ -158,7 +164,7 @@ const Home = () => {
                     <h1 className="font-bold text-xl text-center">Ready to simplify your app distribution?</h1>
                     <p className="mt-2 text-gray-600">Join thousands of app developers who are streamlining their marketing with OneAppUrl.</p>
                     <button className="text-white bg-primary  hover:bg-primary/70 px-5 py-2 flex items-center justify-center rounded-lg mt-5 cursor-pointer" onClick={() => {
-                        navigate("/auth/signin");
+                        navigate("/auth");
                     }}>Get Started for Free <ArrowRight className="ms-2" /></button>
                 </div>
             </main>
