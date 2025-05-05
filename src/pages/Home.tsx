@@ -57,15 +57,15 @@ const Home = () => {
 
                         <ItemWhyChoose title={"Smart Detection"}
                                        description={"Automatically detects your users' device type and redirects them to the appropriate app store."}
-                                       color={"primary"} icon={Smartphone}/>
+                                       iconColor={"text-primary"} iconBgColor={"bg-primary/20"} icon={Smartphone}/>
 
                         <ItemWhyChoose title={"One Link for All"}
                                        description={"Share a single link across all marketing channels that works perfectly for all your users."}
-                                       color={"secondary"} icon={Link}/>
+                                       iconColor={"text-secondary"} iconBgColor={"bg-secondary/20"} icon={Link}/>
 
                         <ItemWhyChoose title={"Track Performance"}
                                        description={"Monitor how many users visit your app store links to optimize your marketing efforts."}
-                                       color={"variant"} icon={CircleCheckBig}/>
+                                       iconColor={"text-variant"} iconBgColor={"bg-variant/20"} icon={CircleCheckBig}/>
                     </div>
                 </div>
 
